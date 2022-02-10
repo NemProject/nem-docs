@@ -20,7 +20,7 @@
 
 title: NEM Documentation
 description: Technical Documentation for Developers and Average Users.
-baseurl: "/nem-docs" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://NemProject.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 logo: "/assets/images/logo.png"
 color_scheme: light
