@@ -8,44 +8,30 @@ taxonomy:
 
 ## About the NEM Supernode Program
 
-NEM is a cryptocurrency with 100% issuance in the Genesis block. In lieu of block rewards, 10,000,000 XEM has been set aside to reward validators: a full node that participates in the consensus and security of the network, and provides high-speed data availability for applications on the NEM blockchain.
+The NEM Supernode Program rewards high performance validators that participate in the consensus and security of the network, and provide high-speed data availability for applications on the NEM blockchain. NEM's native token XEM was 100% issued in the Genesis block; in lieu of block reward, 10,000,000 XEM have been set aside for the Supernode Program.
 
-Validators are rewarded daily for passing all rounds of tests. Each day are executed 4 rounds (every 6 hours) of tests. In order to complete round node must pass following tests:
+Validators are rewarded daily for passing four rounds of tests. To complete the round node must pass the following tests:
 
 **Chain Height**
-The chain height test checks that a node reports the correct height via the ``/chain/height API``. It retrieves a node’s height and compares it to the reference node’s height. 
-
-This test passes if the node reports a height that is no more than four blocks behind the reference node’s height.
+The chain height test checks that a node reports the correct height via the ``/chain/height API``. It retrieves a node’s height and compares it to the reference node’s height. This test passes if the node reports a height that is no more than four blocks behind the reference node’s height.
 
 **Chain Part**
-The chain part test checks that a node can serve a random subset of blocks close to the end of the chain via the ``/chain/blocks-after`` API. First, it retrieves a node’s self reported height. Next, it requests a random number of blocks (between 60 and 100) from the node. Finally, it calculates the hash of each block and then a single composite hash over those hashes. The same composite hash is calculated over blocks retrieved from the reference node.
-
-This test passes if all returned blocks are verifiable with proper signatures and the calculated composite hashes from the node and reference node match.
+The chain part test checks that a node can serve a random subset of blocks close to the end of the chain via the ``/chain/blocks-after`` API. First, it retrieves a node’s self reported height. Next, it requests a random number of blocks (between 60 and 100) from the node. Finally, it calculates the hash of each block and then a single composite hash over those hashes. The same composite hash is calculated over blocks retrieved from the reference node. This test passes if all returned blocks are verifiable with proper signatures and the calculated composite hashes from the node and reference node match.
 
 **Computing Power**
-The computing power test checks that a node is running on sufficiently strong hardware. The master calls a node’s ``nr/computing-power`` API with a random hash. The node interprets that hash as a private key and derives a public key from it. It then interprets that new public key as a private key and derives another public key from it. This is repeated 10000 times and the final public key is returned to the master.
-
-This test passes if the public key matches the value calculated by the master and the entire operation, including roundtrip, completes in 5s or less.
+The computing power test checks that a node is running on sufficiently strong hardware. The master calls a node’s ``nr/computing-power`` API with a random hash. The node interprets that hash as a private key and derives a public key from it. It then interprets that new public key as a private key and derives another public key from it. This is repeated 10000 times and the final public key is returned to the master. This test passes if the public key matches the value calculated by the master and the entire operation, including roundtrip, completes in 5s or less.
 
 **Version**
-The version test checks that a node is running a recent version of the NIS client software. It requests a node’s version via the ``/node/info`` API.
-
-This test passes if the node’s version is greater than or equal to the reference node’s version.
+The version test checks that a node is running a recent version of the NIS client software. It requests a node’s version via the ``/node/info`` API. This test passes if the node’s version is greater than or equal to the reference node’s version.
 
 **Ping**
-The ping test checks that a node is running on sufficiently responsive hardware. The master selects 5 nodes at random and passes them to the node under test via the ``nr/task/ping`` API. Upon receiving the partner nodes, the node calls the ``nr/ping`` API on each partner 5 times each and measures the roundtrip time. When all pings are complete, the node reports the roundtrip times to the master.
-
-This test passes when no more than one ping fails and the average ping time of all successful samples is less than 200ms.
+The ping test checks that a node is running on sufficiently responsive hardware. The master selects 5 nodes at random and passes them to the node under test via the ``nr/task/ping`` API. Upon receiving the partner nodes, the node calls the ``nr/ping`` API on each partner 5 times each and measures the roundtrip time. When all pings are complete, the node reports the roundtrip times to the master. This test passes when no more than one ping fails and the average ping time of all successful samples is less than 200ms.
 
 **Bandwidth**
-The bandwidth test checks a node is running on hardware with a sufficiently good network connection. The master selects the partner node with the lowest ping time as measured by the ping test and passes it to the node under test via the ``nr/task/bandwidth`` API. The master also sends a random hash seed. The node then sends the random hash seed to the partner, which hashes it 30000 times and returns a list of all resulting hashes concatenated to the seed. The sending node measures the time needed to complete this operation. Finally, the sending node independently performs the same hash calculation and returns the results to the master.
-
-This test passes when the hashes calculated by the node and the partner node are equal and the measured operation time indicates a transfer speed of at least 5 Mbit/s.
+The bandwidth test checks a node is running on hardware with a sufficiently good network connection. The master selects the partner node with the lowest ping time as measured by the ping test and passes it to the node under test via the ``nr/task/bandwidth`` API. The master also sends a random hash seed. The node then sends the random hash seed to the partner, which hashes it 30000 times and returns a list of all resulting hashes concatenated to the seed. The sending node measures the time needed to complete this operation. Finally, the sending node independently performs the same hash calculation and returns the results to the master. This test passes when the hashes calculated by the node and the partner node are equal and the measured operation time indicates a transfer speed of at least 5 Mbit/s.
 
 **Responsiveness**
-The responsiveness test checks how quickly a node can respond to a chain height request. The master initiates 10 chain height requests via the ``/chain/height`` API. It then calculates the total amount of time to fulfill all of the requests.
-
-This test passes when at least 9 requests are fulfilled and the total time to fulfill all requests was no greater than one second. If only the time threshold is exceeded, the master will retry this test up to 4 times.
+The responsiveness test checks how quickly a node can respond to a chain height request. The master initiates 10 chain height requests via the ``/chain/height`` API. It then calculates the total amount of time to fulfill all of the requests. This test passes when at least 9 requests are fulfilled and the total time to fulfill all requests was no greater than one second. If only the time threshold is exceeded, the master will retry this test up to 4 times.
 
 ## Steps to Enroll and Participate in the Supernode Program
 
@@ -53,25 +39,24 @@ This test passes when at least 9 requests are fulfilled and the total time to fu
 
 - **Step 2**: Make an Account and Have at Least 10,010 XEM.
 
-  10,000 XEM to be able to participate in the Supernode Program, and ~10 XEM to be able to pay the fees for activating delegated harvesting and sending the enrollment message. (You will need to re-enroll in the Supernode Program every month - 10 XEM should be enough to cover fees for at least a year.)
+  10,000 XEM to be able to participate in the Supernode Program, and ~10 XEM to pay the fees for activating delegated harvesting and sending the enrollment message. (You will need to re-enroll in the Supernode Program every month - 10 XEM should be enough to cover transaction fees for at least a year.)
 
 - **Step 3**: Activate Delegated Harvesting on Your Main Account.
 
-  The tutorial for NEM Wallet delegated harvesting can be found [here](https://nemproject.github.io/nem-docs/pages/Guides/nanowallet/delegated-harvesting/docs.en.html).
+  The tutorial for NEM Wallet delegated harvesting can be found [here](/nem-docs/pages/Guides/nanowallet/delegated-harvesting/docs.en.html).
   
   Remember, 6 hours must pass before you can start harvesting, but for the sake of the Supernode Program, once you have the delegated private key (which is available instantly), you may proceed. (Please make sure to get the private key from the **delegated** harvesting account, not your main account and not either of the public keys.)
   
-  To find your **delegated** private key go to Services -> Delegated Harvesting -> Manage delegated account. Choose "Show delegated account keys", and put the password to reveal the delegated private key.
-
   It's important to understand the difference between Main and Delegated Key Pairs which are used in NEM:
-  - Main - Is used to control funds for your account. If the main private key will be stolen all funds could be transferred to another account. Never expose your Main Private Key!
+  - Main - Is used to control funds for your account. If the main private key will be stolen all funds could be transferred to another account. Never expose or share your Main Private Key!
   - Delegated - Is used to control delegated harvesting. If the delegated private key will be stolen your funds are safe. You'll be also able to change the compromised delegated account linked to your Main account.
   
-  For NEM node and Servant configuration you should use always **Delegated** keys.
+  For NEM node and Servant configuration you should use **Delegated** keys.
+  To find your delegated private key go to Services -> Delegated Harvesting -> Manage delegated account. Choose "Show delegated account keys", and put the password to reveal the delegated private key.
 
 - **Step 4**: Setup NEM Node.
 
-  If you don't have a NEM node, you need to set up it first. The tutorial can be found [here](https://nemproject.github.io/nem-docs/pages/Guides/node-operation/docs.en.html).
+  If you don't have a NEM node, you need to set up it first. The tutorial can be found [here](/nem-docs/pages/Guides/node-operation/docs.en.html).
 
 - **Step 5**: Shutdown the NIS Client, if Running.
 
@@ -127,15 +112,16 @@ This test passes when at least 9 requests are fulfilled and the total time to fu
   Prior to the month-end, a new enrollment address will be announced by [Twitter](https://twitter.com/nemofficial) and [Discord](https://www.discord.gg/xymcity).
   The node operator has to re-enroll each month using a new enrollment address. Enrollment for the next month is available 4 days before the end of the preceding month.
 
-  As an alternative to enrollment via NEM Wallet, you can send enroll transaction manually. It should be transfer transaction with message ``enroll <NODE_HOST> <CODEWORD_HASH>`` to current enrollment address. 
-  As a ``<NODE_HOST>`` should be used host from ``/node/info`` endpoint. Current ``<CODEWORD_HASH>`` can be fetched for specific account by main **public key** (Make sure you are using public - not private key) using Supernode API: ``https://supernodesapi.nem.io/codeword/<main_public_Key>``.
+  As an alternative to enrollment via NEM Wallet, you can send enroll transaction manually. It should be transfer transaction with message: ``enroll <NODE_HOST> <CODEWORD_HASH>`` send to current enrollment address. 
+  
+  As a ``<NODE_HOST>`` you should use host from ``/node/info`` endpoint. Current ``<CODEWORD_HASH>`` can be fetched for specific account by main **public key** (Make sure you are using public - not private key) using Supernode API: ``https://nem.io/supernode/api/codeword/<main_public_Key>``.
 
-- **Step 12**: Review Your Results at [nem.io/supernodes](https://nem.io/supernodes).
+- **Step 12**: Review Your Results at [nem.io/supernode](https://nem.io/supernode).
 
-  To make sure that your NEM node is passing all the tests review results at [nem.io/supernodes](https://nem.io/supernodes) webpage. Please be patient, since your results will not be visible immediately.
+  To make sure your NEM node is passing all the tests review results at [nem.io/supernode](https://nem.io/supernode) web page. Please be patient, since your results will not be visible immediately.
 
-## Editing Your Supernode IP/Domain
+## Editing Your Supernode Host
 
-Some node admins will need to change the IP address from time to time as they move hosting services. Or at some point, a node admin might want to change their node name.
+Some node admins will need to change the IP address or domain from time to time as they move hosting services.
 
-In such a case, you have to modify node configuration and re-send enrollment (Step 11) with a changed IP/Domain.
+In such a case, you have to modify node configuration and re-send enrollment (Step 11) with a changed Host.

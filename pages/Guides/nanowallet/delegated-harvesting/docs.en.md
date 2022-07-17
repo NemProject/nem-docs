@@ -13,7 +13,7 @@ taxonomy:
 
 You will learn how to activate and start delegated harvesting in NanoWallet. Additionally, you will learn two ways for harvesting.  These are delegated harvesting on a remote server provided by somebody else, or learning how to use delegated harvesting by running a local NIS yourself.
 
-**To activate and start delegated harvesting in NanoWallet you need a [XEM Account](https://nem.ghost.io/how-do-i-get-importance-on-the-nem-blockchain/) with at least a 10,000 XEM vested balance.**
+**To activate and start delegated harvesting in NanoWallet you need XEM account with at least a 10,000 XEM vested balance.**
 
 "Vested" means the XEM have stayed in your account for a certain number of days. Every day 10% of your UNVESTED coins become vested. This means an account with 20,000 XEM will take about a week to accumulate the 10,000 vested XEM needed for harvesting.
 
@@ -53,7 +53,7 @@ If everything is successful, the "play" icon will change to a "stop" icon.
 
 If you receive an error, it is most likely because the node you selected is already full. Every node only has a certain amount of harvesting slots, and once they are full, you will need to choose another node.
 
-One way of finding another node is to open [supernodes.nem.io](http://supernodes.nem.io) and try different nodes from the provided list.
+One way of finding another node is to open [nem.io/supernode](https://nem.io/supernode) and try different nodes from the provided list.
 
 Another way to find nodes with free harvesting slots is the @NemNotificationsBot on Telegram. With the command /harvestingSpace it will provide you nodes with free slots. Read more about it [here](https://nem.ghost.io/nem-chain-supernode-notifications-telegram-bot/).
 
@@ -73,7 +73,7 @@ Above we showed how to harvest on a remote node, and it is a normal case for man
 
 **NIS needs Java 8 64 bit to run. Download it from [java.com](https://www.java.com/en/download/manual.jsp) and install it with default values.**
 
-To run a local node, [download the standalone client](http://bob.nem.ninja/nis-0.6.97.tgz) and extract it.
+To run a local node, [download the standalone client](http://bob.nem.ninja/nis-0.6.100.tgz) and extract it.
 
 In the extracted folder (nis-ncc) you will find a file called "runNis" (Windows: runNis.bat, OSX/Linux: nix.runNis.sh).
 
@@ -97,7 +97,7 @@ Navigate to [bob.nem.ninja](http://bob.nem.ninja) and download the DB file. We d
 
 ![](OgDXINY.png)
 
-After the download completes, extract the file "nis5_mainnet.h2.db" and place it in the folder from above.
+After the download completes, extract the file "nis5_mainnet.mv.db" and place it in the folder from above.
 
 ![](07BRFsT.png)
 
