@@ -19,23 +19,23 @@ The chain height test checks that a node reports the correct height via the ``/c
 The chain part test checks that a node can serve a random subset of blocks close to the end of the chain via the ``/chain/blocks-after`` API. First, it retrieves a node’s self reported height. Next, it requests a random number of blocks (between 60 and 100) from the node. Finally, it calculates the hash of each block and then a single composite hash over those hashes. The same composite hash is calculated over blocks retrieved from the reference node. This test passes if all returned blocks are verifiable with proper signatures and the calculated composite hashes from the node and reference node match.
 
 **Computing Power**
-The computing power test checks that a node is running on sufficiently strong hardware. The master calls a node’s ``nr/computing-power`` API with a random hash. The node interprets that hash as a private key and derives a public key from it. It then interprets that new public key as a private key and derives another public key from it. This is repeated 10000 times and the final public key is returned to the master. This test passes if the public key matches the value calculated by the master and the entire operation, including roundtrip, completes in 5s or less.
+The computing power test checks that a node is running on sufficiently strong hardware. The controller calls a node’s ``nr/computing-power`` API with a random hash. The node interprets that hash as a private key and derives a public key from it. It then interprets that new public key as a private key and derives another public key from it. This is repeated 10000 times and the final public key is returned to the controller. This test passes if the public key matches the value calculated by the controller and the entire operation, including roundtrip, completes in 5s or less.
 
 **Version**
 The version test checks that a node is running a recent version of the NIS client software. It requests a node’s version via the ``/node/info`` API. This test passes if the node’s version is greater than or equal to the reference node’s version.
 
 **Ping**
-The ping test checks that a node is running on sufficiently responsive hardware. The master selects 5 nodes at random and passes them to the node under test via the ``nr/task/ping`` API. Upon receiving the partner nodes, the node calls the ``nr/ping`` API on each partner 5 times each and measures the roundtrip time. When all pings are complete, the node reports the roundtrip times to the master. This test passes when no more than one ping fails and the average ping time of all successful samples is less than 200ms.
+The ping test checks that a node is running on sufficiently responsive hardware. The controller selects 5 nodes at random and passes them to the node under test via the ``nr/task/ping`` API. Upon receiving the partner nodes, the node calls the ``nr/ping`` API on each partner 5 times each and measures the roundtrip time. When all pings are complete, the node reports the roundtrip times to the controller. This test passes when no more than one ping fails and the average ping time of all successful samples is less than 200ms.
 
 **Bandwidth**
-The bandwidth test checks a node is running on hardware with a sufficiently good network connection. The master selects the partner node with the lowest ping time as measured by the ping test and passes it to the node under test via the ``nr/task/bandwidth`` API. The master also sends a random hash seed. The node then sends the random hash seed to the partner, which hashes it 30000 times and returns a list of all resulting hashes concatenated to the seed. The sending node measures the time needed to complete this operation. Finally, the sending node independently performs the same hash calculation and returns the results to the master. This test passes when the hashes calculated by the node and the partner node are equal and the measured operation time indicates a transfer speed of at least 5 Mbit/s.
+The bandwidth test checks a node is running on hardware with a sufficiently good network connection. The controller selects the partner node with the lowest ping time as measured by the ping test and passes it to the node under test via the ``nr/task/bandwidth`` API. The controller also sends a random hash seed. The node then sends the random hash seed to the partner, which hashes it 30000 times and returns a list of all resulting hashes concatenated to the seed. The sending node measures the time needed to complete this operation. Finally, the sending node independently performs the same hash calculation and returns the results to the controller. This test passes when the hashes calculated by the node and the partner node are equal and the measured operation time indicates a transfer speed of at least 5 Mbit/s.
 
 **Responsiveness**
-The responsiveness test checks how quickly a node can respond to a chain height request. The master initiates 10 chain height requests via the ``/chain/height`` API. It then calculates the total amount of time to fulfill all of the requests. This test passes when at least 9 requests are fulfilled and the total time to fulfill all requests was no greater than one second. If only the time threshold is exceeded, the master will retry this test up to 4 times.
+The responsiveness test checks how quickly a node can respond to a chain height request. The controller initiates 10 chain height requests via the ``/chain/height`` API. It then calculates the total amount of time to fulfill all of the requests. This test passes when at least 9 requests are fulfilled and the total time to fulfill all requests was no greater than one second. If only the time threshold is exceeded, the controller will retry this test up to 4 times.
 
 ## Steps to Enroll and Participate in the Supernode Program
 
-- **Step 1**: Download and Launch NEM Wallet From [the GitHub Releases Page](https://github.com/NemProject/NanoWallet/releases).
+- **Step 1**: Download and Launch Latest NEM NanoWallet From [the GitHub Releases Page](https://github.com/NemProject/NanoWallet/releases).
 
 - **Step 2**: Make an Account and Have at Least 10,010 XEM.
 
@@ -43,7 +43,7 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 
 - **Step 3**: Activate Delegated Harvesting on Your Main Account.
 
-  The tutorial for NEM Wallet delegated harvesting can be found [here](/nem-docs/pages/Guides/nanowallet/delegated-harvesting/docs.en.html).
+  The tutorial for NEM NanoWallet delegated harvesting can be found [here](https://nemproject.github.io/nem-docs/pages/Guides/nanowallet/delegated-harvesting/docs.en.html#activation).
   
   Remember, 6 hours must pass before you can start harvesting, but for the sake of the Supernode Program, once you have the delegated private key (which is available instantly), you may proceed. (Please make sure to get the private key from the **delegated** harvesting account, not your main account and not either of the public keys.)
   
@@ -56,7 +56,7 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 
 - **Step 4**: Setup NEM Node.
 
-  If you don't have a NEM node, you need to set up it first. The tutorial can be found [here](/nem-docs/pages/Guides/node-operation/docs.en.html).
+  If you don't have a NEM node, you need to set up it first. The tutorial can be found [here](https://nemproject.github.io/nem-docs/pages/Guides/node-operation/docs.en.html).
 
 - **Step 5**: Shutdown the NIS Client, if Running.
 
@@ -92,7 +92,7 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 
   Opening port 7880 is required to allow the servant to work correctly.
 
-  Port 7778 allows NEM Wallet to connect using websockets to the server.
+  Port 7778 allows NEM NanoWallet to connect using websockets to the server.
 
 - **Step 10**: Start NIS Client, Let it Synchronize, and Then Start the Servant.
 
@@ -102,7 +102,7 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 
   Go to Services -> SuperNode Program -> Check & Enroll in Program -> Enroll in Program, put the enrollment address for current month (announced via [Twitter](https://twitter.com/nemofficial) and [Discord](https://www.discord.gg/xymcity)) and host for your NEM node. Send enrollment transaction.
 
-  ![NEM Wallet Enrollment](wallet-enroll.png)
+  ![NEM NanoWallet Enrollment](wallet-enroll.png)
 
   Make sure host matches your node host from ``/node/info`` endpoint response.
 
@@ -112,7 +112,7 @@ The responsiveness test checks how quickly a node can respond to a chain height 
   Prior to the month-end, a new enrollment address will be announced by [Twitter](https://twitter.com/nemofficial) and [Discord](https://www.discord.gg/xymcity).
   The node operator has to re-enroll each month using a new enrollment address. Enrollment for the next month is available 4 days before the end of the preceding month.
 
-  As an alternative to enrollment via NEM Wallet, you can send enroll transaction manually. It should be transfer transaction with message: ``enroll <NODE_HOST> <CODEWORD_HASH>`` send to current enrollment address. 
+  As an alternative to enrollment via NEM NanoWallet, you can send enroll transaction manually. It should be transfer transaction with message: ``enroll <NODE_HOST> <CODEWORD_HASH>`` send to current enrollment address. 
   
   As a ``<NODE_HOST>`` you should use host from ``/node/info`` endpoint. Current ``<CODEWORD_HASH>`` can be fetched for specific account by main **public key** (Make sure you are using public - not private key) using Supernode API: ``https://nem.io/supernode/api/codeword/<main_public_Key>``.
 
