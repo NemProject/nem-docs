@@ -10,7 +10,7 @@ taxonomy:
 
 The NEM Supernode Program rewards high performance validators that participate in the consensus and security of the network, and provide high-speed data availability for applications on the NEM blockchain. NEM's native token XEM was 100% issued in the Genesis block; in lieu of block reward, 10,000,000 XEM have been set aside for the Supernode Program.
 
-Validators are rewarded daily for passing four rounds of tests. To complete the round node must pass the following tests:
+Reward eligibility is determined on a daily basis via four rounds of testing (one round every 6 hours). A participating node must pass all tests in a given day in order to be eligible for a share of that day's rewards. Each round of testing includes the following tests:
 
 **Chain Height**
 The chain height test checks that a node reports the correct height via the ``/chain/height API``. It retrieves a node’s height and compares it to the reference node’s height. This test passes if the node reports a height that is no more than four blocks behind the reference node’s height.
@@ -25,10 +25,10 @@ The computing power test checks that a node is running on sufficiently strong ha
 The version test checks that a node is running a recent version of the NIS client software. It requests a node’s version via the ``/node/info`` API. This test passes if the node’s version is greater than or equal to the reference node’s version.
 
 **Ping**
-The ping test checks that a node is running on sufficiently responsive hardware. The controller selects 5 nodes at random and passes them to the node under test via the ``nr/task/ping`` API. Upon receiving the partner nodes, the node calls the ``nr/ping`` API on each partner 5 times each and measures the roundtrip time. When all pings are complete, the node reports the roundtrip times to the controller. This test passes when no more than one ping fails and the average ping time of all successful samples is less than 200ms.
+The ping test checks that a node has a sufficiently responsive network connection. The controller selects 5 nodes at random and passes them to the node under test via the ``nr/task/ping`` API. Upon receiving the partner nodes, the node calls the ``nr/ping`` API on each partner 5 times each and measures the roundtrip time. When all pings are complete, the node reports the roundtrip times to the controller. This test passes when no more than one ping fails and the average ping time of all successful samples is less than 200ms.
 
 **Bandwidth**
-The bandwidth test checks a node is running on hardware with a sufficiently good network connection. The controller selects the partner node with the lowest ping time as measured by the ping test and passes it to the node under test via the ``nr/task/bandwidth`` API. The controller also sends a random hash seed. The node then sends the random hash seed to the partner, which hashes it 30000 times and returns a list of all resulting hashes concatenated to the seed. The sending node measures the time needed to complete this operation. Finally, the sending node independently performs the same hash calculation and returns the results to the controller. This test passes when the hashes calculated by the node and the partner node are equal and the measured operation time indicates a transfer speed of at least 5 Mbit/s.
+The bandwidth test checks a node is running on hardware with a sufficiently capable network connection. The controller selects the partner node with the lowest ping time as measured by the ping test and passes it to the node under test via the ``nr/task/bandwidth`` API. The controller also sends a random hash seed. The node then sends the random hash seed to the partner, which hashes it 30000 times and returns a list of all resulting hashes concatenated to the seed. The sending node measures the time needed to complete this operation. Finally, the sending node independently performs the same hash calculation and returns the results to the controller. This test passes when the hashes calculated by the node and the partner node are equal and the measured operation time indicates a transfer speed of at least 5 Mbit/s.
 
 **Responsiveness**
 The responsiveness test checks how quickly a node can respond to a chain height request. The controller initiates 10 chain height requests via the ``/chain/height`` API. It then calculates the total amount of time to fulfill all of the requests. This test passes when at least 9 requests are fulfilled and the total time to fulfill all requests was no greater than one second. If only the time threshold is exceeded, the controller will retry this test up to 4 times.
@@ -44,8 +44,8 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 - **Step 3**: Activate Delegated Harvesting on Your Main Account.
 
   The tutorial for NEM NanoWallet delegated harvesting can be found [here](https://nemproject.github.io/nem-docs/pages/Guides/nanowallet/delegated-harvesting/docs.en.html#activation).
-  
-  Remember, 6 hours must pass before you can start harvesting, but for the sake of the Supernode Program, once you have the delegated private key (which is available instantly), you may proceed. (Please make sure to get the private key from the **delegated** harvesting account, not your main account and not either of the public keys.)
+
+  Six (6) hours must pass before you can start harvesting, but enrollment in the Supernode Program can be initiated once you have the delegated private key (available immediately). (Please make sure to get the private key from the **delegated** harvesting account, not your main account and not either of the public keys.)
   
   It's important to understand the difference between Main and Delegated Key Pairs which are used in NEM:
   - Main - Is used to control funds for your account. If the main private key will be stolen all funds could be transferred to another account. Never expose or share your Main Private Key!
