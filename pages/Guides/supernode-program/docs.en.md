@@ -10,7 +10,7 @@ taxonomy:
 
 The NEM Supernode Program rewards high performance validators that participate in the consensus and security of the network, and provide high-speed data availability for applications on the NEM blockchain. NEM's native token XEM was 100% issued in the Genesis block; in lieu of block reward, 10,000,000 XEM have been set aside for the Supernode Program.
 
-Reward eligibility is determined on a daily basis via four rounds of testing (one round every 6 hours). A participating node must pass all tests in a given day in order to be eligible for a share of that day's rewards. Each round of testing includes the following tests:
+Reward eligibility is determined on a daily basis via four rounds of testing (one round every 6 hours). A participating node must pass all tests in a given day in order to be eligible for a share of that day's rewards. Node testing is facilitated by the controller. A reference node is also used for comparative purposes in some tests. Each round of testing includes the following tests:
 
 **Chain Height**
 The chain height test checks that a node reports the correct height via the ``/chain/height API``. It retrieves a node’s height and compares it to the reference node’s height. This test passes if the node reports a height that is no more than four blocks behind the reference node’s height.
