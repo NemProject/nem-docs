@@ -67,7 +67,7 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 
   Optionally (node will try to autodetect IP automatically if not defined), you can define your domain or IP using ``nem.host`` property.
 
-  ![nis config.properties](Screenshot-2016-02-07-05-25-08.png)
+  ![nis config.properties](guide-config-properties-node.png)
 
   Save your edits and close the text editor.
 
@@ -81,7 +81,7 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 
   Unzip and open the folder ``servant``. Open the file ``config.properties`` with a text editor. In your text editor enter your static IP or domain name for the ``nem.host`` field. (It is important that your domain name or static IP associated with your node is fixed for the stability of the network.) Then in the field ``servant.key`` enter your delegated private key from Step 3. (Again make sure to use your delegated private key and not your main account private key.) Save your edits and close the text editor.
 
-  ![servant config.properties](Screenshot-2016-01-06-14-07-35-copy-1.png)
+  ![servant config.properties](guide-config-properties-servant.png)
 
 - **Step 9**: Open Inbound/Outbound TCP ports 7890 (NIS), 7880 (Servant), and 7778 (Websocket).
 
@@ -99,11 +99,11 @@ The responsiveness test checks how quickly a node can respond to a chain height 
 
   Go to Services -> SuperNode Program -> Check & Enroll in Program -> Enroll in Program, put the enrollment address for current month (announced via [Twitter](https://twitter.com/nemofficial) and [Discord](https://www.discord.gg/xymcity)) and host for your NEM node. Send enrollment transaction.
 
-  ![NEM NanoWallet Enrollment](wallet-enroll.png)
+  ![NEM NanoWallet Enrollment](guide-wallet-enroll.png)
 
   Make sure host matches your node host from ``/node/info`` endpoint response.
 
-  ![Endpoint response](node-info.png)
+  ![Endpoint response](guide-node-info.png)
 
   As an alternative to enrollment via NEM NanoWallet, you can send enroll transaction manually. It should be transfer transaction with message: ``enroll <NODE_HOST> <CODEWORD_HASH>`` send to current enrollment address. 
   
