@@ -11,7 +11,7 @@ taxonomy:
 * TOC
 {:toc}
 
-You will learn how to activate and start delegated harvesting in NEM NanoWallet. Additionally, you will learn two ways for harvesting.  These are delegated harvesting on a remote server provided by somebody else, or learning how to use delegated harvesting by running a local NIS yourself.
+On this page you will learn how to activate and start delegated harvesting in NanoWallet. Additionally, you will learn two approaches for harvesting: delegated harvesting on a remote server provided by somebody else, and delegated harvesting by running a local NEM node yourself.
 
 **To activate and start delegated harvesting in NEM NanoWallet you need XEM account with at least a 10,000 XEM vested balance.**
 
@@ -67,9 +67,9 @@ You can later log in to the Dashboard of your NEM NanoWallet and get a summary o
 
 *The NEM Team would like to thank Patrick (Telegram: @Spizzerb) for contributing this.*
 
-## Local NEM node
+## Local NEM Node
 
-Above we showed how to harvest on a remote node, and it is a normal case for many that they run delegated harvesting on a remote NIS, but it is also possible to run delegated harvesting on a local NIS. The advantage of this is that you will always know that your account is being harvested on and you won't have to rely on others.
+Above we showed how to harvest on a remote node, and it is a normal case for many that they run delegated harvesting on a remote node, but it is also possible to run delegated harvesting on a local NEM node. The advantage of this is that you will always know that your account is being harvested on and you won't have to rely on others.
 
 To set up NEM node check guide: https://nemproject.github.io/nem-docs/pages/Guides/node-operation/docs.en.html
 
@@ -86,7 +86,7 @@ You are now connected to your local NIS!
 
 **Remember to let NIS run in the background!**
 
-To start delegated harvesting with your local NIS repeat the steps from above but select "localhost" in the "Start/Stop delegated harvesting" panel for your node.
+To start delegated harvesting with your local NEM node repeat the steps from above but select "localhost" in the "Start/Stop delegated harvesting" panel for your node.
 
 ## Benefits of Delegated Harvesting
 
@@ -96,8 +96,8 @@ First, delegated harvesting allows NEM to use a tiered architecture. The first t
 
 Another advantage of delegated harvesting is that it enables a high proportion of users to participate in the Proof of Importance (POI) system. The POI system rewards users for keeping a certain amount of currency in their wallet over time, but also for making frequent transactions. Both of these behaviors are good for the ecosystem, and delegated harvesting is the main reason users want to increase their POI scores.
 
-Harvesters collect transaction fees from the blocks they harvest, and NEM does not take a cut for themselves. Harvesters keep 100% of their catch.
+Harvesters collect 100% of the transaction fees in the blocks they harvest.
 
 One more benefit of NEM's delegated harvesting feature is that light clients use a public key, which means a harvester's private key is never exposed. Even if the Supernode became compromised it would pose no danger to the clients harvesting with it.
 
-Finally, delegated harvesting is a great example of the spirit in which NEM was founded. Instead of rewarding those with a huge bankroll to buy hardware farms or hoard coins, delegated harvesting allows more people to participate in the reward system. This is part of NEM's culture of fairness and inclusiveness, where anyone can have a positive impact.
+Finally, delegated harvesting is a great example of the spirit in which NEM was founded. Instead of rewarding those with huge bankrolls for buying hardware farms or hoarding coins, delegated harvesting allows more people to participate in the reward system. This is part of NEM's culture of fairness and inclusiveness, where anyone can have a positive impact.
