@@ -38,3 +38,9 @@ taxonomy:
 
 * [bob.nem.ninja](http://bob.nem.ninja:8765/#/blocks/0)
 * [Testnet Nemtool](https://testnet-explorer.nemtool.com/)
+
+## Node Providers
+
+* [NOWNodes.io](http://bit.do/nownodes-nem)
+
+
